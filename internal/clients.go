@@ -32,8 +32,8 @@ func newClient(conn net.Conn, welcome string) {
 	// Проверяем кэш сообщение из чата
 	// при наличии истории сообщений подгружаем теущему
 	// новому клиенту
-	if len(cahe) != 0 {
-		for _, v := range cahe {
+	if len(cache) != 0 {
+		for _, v := range cache {
 			conn.Write([]byte(v))
 		}
 	}
@@ -68,7 +68,7 @@ func newClient(conn net.Conn, welcome string) {
 	// Удаляем данные клиента из хеш-таблицы
 	delete(clients, conn)
 	mu.Unlock()
-	// Передаем в канал сообщение об отключении клиента для широковещания 
+	// Передаем в канал сообщение об отключении клиента для широковещания
 	leave <- message{client.name, time.Now().Format("2006-01-02 15:04:05"), leaveText}
 }
 

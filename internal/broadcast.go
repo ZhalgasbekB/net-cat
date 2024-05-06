@@ -29,7 +29,7 @@ func broadcast() {
 					client.conn.Write([]byte(metaDataClient))
 				}
 			}
-			cahe = append(cahe, text+"\n")
+			cache = append(cache, text+"\n")
 
 		case msg := <-leave:
 
